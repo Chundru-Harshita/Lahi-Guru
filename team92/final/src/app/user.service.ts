@@ -15,5 +15,11 @@ export class UserService {
   userLogin(userObj):Observable<any>{
     return this.hc.post("/teacher/login",userObj);
   }
+  addStudent(userObj):Observable<any>{
+    return this.hc.post("/teacher/add",userObj);
+  }
+  sendMessage(userObj):Observable<any>{
+    return this.hc.post("/teacher/send",userObj);
+  }
 
 }

@@ -2,6 +2,9 @@ const exp=require("express");
 const teacherApiRoute=exp.Router();
 const jwt=require("jsonwebtoken")
 const bcrypt=require("bcryptjs")
+const accountSid = 'AC5b3533808c0c2139a340715db6c926b2'; 
+const authToken = '191b8a02ce0926c1cf102d1363c8d2de'; 
+const client = require('twilio')(accountSid, authToken); 
 
 //use json middleware
 teacherApiRoute.use(exp.json());
@@ -74,20 +77,48 @@ teacherApiRoute.post("/login",async (req,res)=>{
 })
 
 //private route
-// teacherApiRoute.get("/add",verifyToken,(req,res)=>{
-//     let studentCredentialsObj=req.body;
+//teacherApiRoute.post("/add",verifyToken,async (req,res)=>{
+teacherApiRoute.post("/add",async (req,res)=>{
+    let studentCredentialsObj=req.body;
     
-//     const studentCollectionObj=req.app.get("studentObj")
-//     let teacherObjFromDb= await studentCollectionObj.findOne({class: teacherCredentialsObj.class})
-//     if(teacherObjFromDb==null){
-//         let result= await studentCollectionObj.insertOne(teacherObj);
-        
-//         res.send({message:"success"})
-//     }
-//     else{
+    const studentCollectionObj=req.app.get("studentObj")
+    let studentObjOfDb=await studentCollectionObj.findOne({mobileno: studentCredentialsObj.mobileno})
 
-//     }
-// })
+    if(studentObjOfDb!=null){
+        res.send({message:"failed"})
+    }
+    else{
+        let result= await studentCollectionObj.insertOne(studentCredentialsObj);
+        
+        res.send({message:"success"})
+    }
+})
+
+teacherApiRoute.post("/send",async (req,res)=>{
+    let studentObj=req.body;
+    const studentCollectionObj=req.app.get("studentObj")
+    let studentObjOfDb=await studentCollectionObj.find({class: studentObj.class}).forEach(element => {
+        setTimeout(()=>{
+            client.messages 
+                .create({ 
+                    body: `${studentObj.link}`, 
+                    from: 'whatsapp:+14155238886',       
+                    to: `whatsapp:+91${element.mobileno}`
+                 }) 
+                .then() 
+                .done();
+            client.messages 
+                .create({ 
+                   body: `${studentObj.link}`, 
+                   from: '+16123548914',       
+                   to: `+91${element.mobileno}`
+                 }) 
+                .then() 
+                .done();
+          },studentObj.date-new Date().getTime()-900000)
+    });
+    res.send({message:"done"});
+})
 
 //export
 module.exports=teacherApiRoute;
