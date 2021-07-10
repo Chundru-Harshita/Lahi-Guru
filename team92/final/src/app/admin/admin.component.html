@@ -1,1 +1,84 @@
-<p>admin works!</p>
+<!-- <div>
+    <div class="pricing-column container p-5 col-lg-4 col-md-6">
+        <div class="card">
+        <div class="card-header">
+            <h3>Subject 1</h3>
+        </div>
+        <div class="card-body">
+            <h2 class="price-text">$49 / mo</h2>
+            <p>Unlimited Matches</p>
+            <p>Unlimited Messages</p>
+            <p>Unlimited App Usage</p>
+            <button type="button" class="w-100 btn btn-lg btn-dark">Sign Up</button>
+            <form #ref = "ngForm" (ngSubmit) = "addStudentData(ref.value)">
+                <div>
+                    <label for = "name">Name</label>
+                    <input type = "text" name = "name" class = "form-control" ngModel>
+                </div>
+                <div>
+                    <label for = "name">Name</label>
+                    <input type = "text" name = "name" class = "form-control" ngModel>
+                </div>
+                <div>
+                    <label for = "mobileno">Contact Number: </label>
+                    <input type = "text" name = "mobileno" class = "form-control" ngModel>
+                </div>
+                <div>
+                    <button class = "btn btn-success w-100 mt-3">Add Student</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div> -->
+
+<div class="container">
+    <div class = "row">
+        <div class="p-5 col-lg-6 col-md-12">
+            <div class = "card">
+                <div class = "card-body">
+                    <form #dateTime = "ngForm" class = "container p-5" (ngSubmit) = "formatDateTime(dateTime.value)">
+                        <div>
+                            <label for = "className">Class Name: </label>
+                            <input type = "string" name = "className" class = "form-control" ngModel>
+                        </div>
+                        <div>
+                            <label for = "meetingLink">Google/Zoom Meeting: </label>
+                            <input type = "string" name = "meetingLink" class = "form-control" ngModel>
+                        </div>
+                        <div>
+                            <label for = "timings">Timings: </label>
+                            <input type = "datetime-local" name = "timings" class = "form-control" ngModel>
+                        </div>
+                        <div>
+                            <button class = "btn btn-success w-100 mt-3">Send invites</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="container p-5 col-lg-6 col-md-12">
+            <div class = "card">
+                <div class = "card-body">
+                    <form #dateTime = "ngForm" class = "container p-5" (ngSubmit) = "formatDateTime(dateTime.value)">
+                        <div>
+                            <label for = "className">Class Name: </label>
+                            <input type = "string" name = "className" class = "form-control" ngModel>
+                        </div>
+                        <div>
+                            <label for = "meetingLink">Google/Zoom Meeting: </label>
+                            <input type = "string" name = "meetingLink" class = "form-control" ngModel>
+                        </div>
+                        <div>
+                            <label for = "timings">Timings: </label>
+                            <input type = "datetime-local" name = "timings" class = "form-control" ngModel>
+                        </div>
+                        <div>
+                            <button class = "btn btn-success w-100 mt-3">Send invites</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>
