@@ -1,0 +1,10 @@
+.formStyle{
+    border-style: solid;
+    border-color: rgb(207, 207, 207);
+}
+.btn{
+    margin-bottom: 20px;
+}
+.form-floating{
+    margin:20px;
+}
