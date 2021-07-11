@@ -11,6 +11,7 @@ export class AuthorizationService implements HttpInterceptor{
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>>{
     //get token from session storage
     let token=localStorage.getItem("token")
+    console.log(token)
     //token is there only after login, but intercept gets everyrequest even before login
     if(token){
       //add it to header of req object

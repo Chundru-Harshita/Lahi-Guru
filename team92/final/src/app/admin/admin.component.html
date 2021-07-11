@@ -38,14 +38,14 @@
                 <div class = "card-body">
                     <form #dateTime = "ngForm" class = "container p-5" (ngSubmit) = "formatDateTime(dateTime.value)">
                         <div>
-                            <label for = "className">Class Name: </label>
-                            <input type = "string" name = "className" class = "form-control" ngModel>
+                            <label for = "classname">Class Name: </label>
+                            <input type = "string" name = "classname" class = "form-control" ngModel>
                         </div>
-                        <div>
+                        <div class="mt-3">
                             <label for = "meetingLink">Google/Zoom Meeting: </label>
                             <input type = "string" name = "meetingLink" class = "form-control" ngModel>
                         </div>
-                        <div>
+                        <div class="mt-3 mb-3">
                             <label for = "timings">Timings: </label>
                             <input type = "datetime-local" name = "timings" class = "form-control" ngModel>
                         </div>
@@ -59,21 +59,21 @@
         <div class="container p-5 col-lg-6 col-md-12">
             <div class = "card">
                 <div class = "card-body">
-                    <form #dateTime = "ngForm" class = "container p-5" (ngSubmit) = "formatDateTime(dateTime.value)">
+                    <form #ref = "ngForm" class = "container p-5" (ngSubmit) = "addStudentData(ref)">
                         <div>
-                            <label for = "className">Class Name: </label>
-                            <input type = "string" name = "className" class = "form-control" ngModel>
+                            <label for = "classname">Class Name: </label>
+                            <input type = "string" name = "classname" class = "form-control" ngModel>
+                        </div>
+                        <div class="mt-3">
+                            <label for = "studentName">Student Name: </label>
+                            <input type = "string" name = "studentName" class = "form-control" ngModel>
+                        </div>
+                        <div class="mt-3 mb-3">
+                            <label for = "mobileno">Student Number: </label>
+                            <input type = "string" name = "mobileno" class = "form-control" ngModel>
                         </div>
                         <div>
-                            <label for = "meetingLink">Google/Zoom Meeting: </label>
-                            <input type = "string" name = "meetingLink" class = "form-control" ngModel>
-                        </div>
-                        <div>
-                            <label for = "timings">Timings: </label>
-                            <input type = "datetime-local" name = "timings" class = "form-control" ngModel>
-                        </div>
-                        <div>
-                            <button class = "btn btn-success w-100 mt-3">Send invites</button>
+                            <button class = "btn btn-success w-100 mt-3">Add Students</button>
                         </div>
                     </form>
                 </div>

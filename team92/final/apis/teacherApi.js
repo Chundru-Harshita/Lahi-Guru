@@ -78,9 +78,8 @@ teacherApiRoute.post("/login",async (req,res)=>{
 
 //private route
 //teacherApiRoute.post("/add",verifyToken,async (req,res)=>{
-teacherApiRoute.post("/add",async (req,res)=>{
+teacherApiRoute.post("/add",verifyToken,async (req,res)=>{
     let studentCredentialsObj=req.body;
-    
     const studentCollectionObj=req.app.get("studentObj")
     let studentObjOfDb=await studentCollectionObj.findOne({mobileno: studentCredentialsObj.mobileno})
 
@@ -94,14 +93,14 @@ teacherApiRoute.post("/add",async (req,res)=>{
     }
 })
 
-teacherApiRoute.post("/send",async (req,res)=>{
+teacherApiRoute.post("/send",verifyToken,async (req,res)=>{
     let studentObj=req.body;
     const studentCollectionObj=req.app.get("studentObj")
-    let studentObjOfDb=await studentCollectionObj.find({class: studentObj.class}).forEach(element => {
+    let studentObjOfDb=await studentCollectionObj.find({classname: studentObj.classname}).forEach(element => {
         setTimeout(()=>{
             client.messages 
                 .create({ 
-                    body: `${studentObj.link}`, 
+                    body: `${studentObj.meetingLink}`, 
                     from: 'whatsapp:+14155238886',       
                     to: `whatsapp:+91${element.mobileno}`
                  }) 
@@ -109,15 +108,15 @@ teacherApiRoute.post("/send",async (req,res)=>{
                 .done();
             client.messages 
                 .create({ 
-                   body: `${studentObj.link}`, 
+                   body: `${studentObj.meetingLink}`, 
                    from: '+16123548914',       
                    to: `+91${element.mobileno}`
                  }) 
                 .then() 
                 .done();
-          },studentObj.date-new Date().getTime()-900000)
+          },Date.parse(studentObj.timings)-(new Date().getTime())-900000)
     });
-    res.send({message:"done"});
+    res.send({message:"success"});
 })
 
 //export
