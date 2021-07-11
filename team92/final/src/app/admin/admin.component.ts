@@ -85,4 +85,10 @@ export class AdminComponent implements OnInit {
     )
     //console.log(ref["timings"]);
   }
+  logOut(){
+    //remover token
+    localStorage.clear();
+    //navogate to home
+    this.router.navigateByUrl("/register")
+  }
 }
